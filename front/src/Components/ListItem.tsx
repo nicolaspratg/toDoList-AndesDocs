@@ -14,6 +14,7 @@ import updateItemCompletion from "../utils/updateItemCompletion";
 
 interface ListItemProps {
   todoItems: ToDoItem[];
+  setTodoItems: (items: ToDoItem[]) => void;
   expandedItemId: string | null;
   toggleExpandedItemId: (id: string) => void;
   handleEditClick: (todo: ToDoItem) => void;
@@ -23,6 +24,7 @@ interface ListItemProps {
 
 const ListItemComponent: React.FC<ListItemProps> = ({
   todoItems,
+  setTodoItems,
   expandedItemId,
   toggleExpandedItemId,
   handleEditClick,
@@ -44,10 +46,15 @@ const ListItemComponent: React.FC<ListItemProps> = ({
     const updatedCompleted = event.target.checked;
     try {
       await updateItemCompletion(item.id, updatedCompleted);
+      const updatedTodoItems = todoItems.map((todo) =>
+        todo.id === item.id ? { ...todo, completed: updatedCompleted } : todo
+      );
+      setTodoItems(updatedTodoItems);
     } catch (error) {
       console.error("Error updating item completion:", error);
     }
   };
+
   return (
     <List>
       {todoItems.map((item) => (
@@ -86,7 +93,7 @@ const ListItemComponent: React.FC<ListItemProps> = ({
               <Typography
                 variant="body2"
                 component="div"
-                sx={{ opacity: 0.7 }}
+                sx={{ opacity: 0.7, width: "100%", wordWrap: "break-word" }}
                 onClick={() => toggleExpandedItemId(item.id)}
                 style={{ cursor: "pointer" }}
               >
@@ -108,18 +115,17 @@ const ListItemComponent: React.FC<ListItemProps> = ({
                 ) : (
                   <>
                     {item.description}
-                    {item.description.length > 50 &&
-                      expandedItemId !== item.id && (
-                        <IconButton
-                          onClick={(event) => {
-                            event.stopPropagation();
-                            toggleExpandedItemId(item.id);
-                          }}
-                          style={{ padding: 0, marginLeft: 4 }}
-                        >
-                          <ExpandLessIcon />
-                        </IconButton>
-                      )}
+                    {expandedItemId === item.id && (
+                      <IconButton
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          toggleExpandedItemId(item.id);
+                        }}
+                        style={{ padding: 0, marginLeft: 4 }}
+                      >
+                        <ExpandLessIcon />
+                      </IconButton>
+                    )}
                   </>
                 )}
               </Typography>
