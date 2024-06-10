@@ -132,27 +132,31 @@ const ToDoContainer: React.FC = () => {
         }}
       >
         <Header handleOpenModal={handleOpenModal} />
-        <Button
-          color="primary"
-          onClick={handleOpenDeleteDialog}
-          style={{
-            margin: "10px 0",
-            backgroundColor: "#831ea3",
-            color: "white",
-            padding: "10px",
-          }}
-          startIcon={<DeleteIcon />}
-        ></Button>
-
         <ListItemComponent
           todoItems={todoItems}
+          setTodoItems={setTodoItems}
           expandedItemId={expandedItemId}
           toggleExpandedItemId={toggleExpandedItemId}
           handleEditClick={handleOpenEditModal}
           handleDeleteClick={handleDeleteClick}
           handleUpdateCompletion={handleUpdateCompletion}
         />
+        <div style={{ textAlign: "right", marginTop: "10px" }}>
+          <Button
+            color="primary"
+            onClick={handleOpenDeleteDialog}
+            style={{
+              backgroundColor: "#831ea3",
+              color: "white",
+              padding: "10px",
+            }}
+            startIcon={<DeleteIcon />}
+          >
+            Delete
+          </Button>
+        </div>
       </Paper>
+
       <AddTodoModal
         open={modalOpen}
         onClose={handleCloseModal}
