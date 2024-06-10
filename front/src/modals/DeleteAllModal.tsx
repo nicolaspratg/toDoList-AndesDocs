@@ -40,10 +40,19 @@ const DeleteAllModal: React.FC<DeleteAllModalProps> = ({
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="primary">
+        <Button
+          onClick={onClose}
+          color="primary"
+          style={{ backgroundColor: "#831ea3", color: "white" }}
+        >
           Cancel
         </Button>
-        <Button onClick={handleDeleteAll} color="secondary" startIcon={<DeleteIcon />}>
+        <Button
+          onClick={handleDeleteAll}
+          color="secondary"
+          startIcon={<DeleteIcon />}
+          style={{ backgroundColor: "#831ea3", color: "white" }}
+        >
           Delete All
         </Button>
       </DialogActions>
