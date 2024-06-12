@@ -24,13 +24,13 @@ const EditToDoModal: React.FC<EditToDoModalProps> = ({
 }) => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const [completed, setCompleted] = useState<boolean>(false); // Declare completed state
+  const [completed, setCompleted] = useState<boolean>(false);
 
   useEffect(() => {
     if (todo) {
       setTitle(todo.title);
       setDescription(todo.description);
-      setCompleted(todo.completed); // Initialize completed state
+      setCompleted(todo.completed);
     }
   }, [todo]);
 

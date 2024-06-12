@@ -31,7 +31,7 @@ const AddTodoModal: React.FC<AddTodoModalProps> = ({
     const todoWithId = {
       ...data,
       id: Math.floor(Math.random() * 1000).toString(),
-    }; // Add id to todo
+    };
     onAdd(todoWithId);
     onClose();
     reset({
