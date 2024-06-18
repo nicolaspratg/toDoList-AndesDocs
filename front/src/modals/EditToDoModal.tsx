@@ -43,7 +43,7 @@ const EditToDoModal: React.FC<EditToDoModalProps> = ({
 
   return (
     <Dialog open={isOpen} onClose={onClose}>
-      <DialogTitle>Edit ToDo</DialogTitle>
+      <DialogTitle>Edit To-Do</DialogTitle>
       <DialogContent>
         <TextField
           autoFocus
